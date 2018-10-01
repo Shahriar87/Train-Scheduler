@@ -1,11 +1,11 @@
 // Firebase Initialization
 var config = {
-apiKey: "AIzaSyC1XHduHYE7HBonDI3vL0xoCegu26hBCE0",
-authDomain: "train-scheduler-f6b95.firebaseapp.com",
-databaseURL: "https://train-scheduler-f6b95.firebaseio.com",
-projectId: "train-scheduler-f6b95",
-storageBucket: "train-scheduler-f6b95.appspot.com",
-messagingSenderId: "904168757222"
+   apiKey: "AIzaSyC1XHduHYE7HBonDI3vL0xoCegu26hBCE0",
+   authDomain: "train-scheduler-f6b95.firebaseapp.com",
+   databaseURL: "https://train-scheduler-f6b95.firebaseio.com",
+   projectId: "train-scheduler-f6b95",
+   storageBucket: "train-scheduler-f6b95.appspot.com",
+   messagingSenderId: "904168757222"
 };
 firebase.initializeApp(config);
 
@@ -17,7 +17,7 @@ var firstTime = "";
 var trainFreq = 0;
 var currentTime = moment();
 
-// Validation Functions - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 function checkTime(){
 var isValid = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test($("#startTime").val());
 if (isValid) {
