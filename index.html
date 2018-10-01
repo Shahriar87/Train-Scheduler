@@ -11,18 +11,85 @@
 <body>
     <div class="container">
         <div class="row card-body bg-primary">
-            <i class="center-align do material-icons left col s2">train</i>
-            <h3 class="col s7 center-align">Train Scheduler</h3>
-            <a id="addButton" class="btn btn-secondary btn-lg active" type="button" name="action" href="#form">
-                Add Train<i class="material-icons right">add_box</i>
-            </a>
-            <div class="row">
-                <div class="bg-success">                           
+            <button id="addButton" class="btn btn-secondary btn-lg active col-2" type="button" name="action" href="#form">
+                Add Train<i class="material-icons right" >add_box</i>
+            </button>
+            <div class="col-2"></div>
+            
+            <h2 class="col-4 text-center">Anytime is Train Time</h2>
+            
+            <div class="col-2"></div>
+
+            <i class="material-icons col-2" style="font-size:60px">train</i>
+        
+            <div class="row m-auto">
+                <div class="bg-success rounded-circle p-3"> time                          
                 </div>
             </div>       
         </div>
+        <br>
         <div class="row card-body bg-primary">
-
+            <div class="bg-danger text-white" style="width:100%">
+                <h3 class="col s12 text-center">Current Train Schedule</h3>
+                <table>
+                    <tr>
+                        <th class="col s3"><p>Train Name</p></th>
+                        <th class="col s3"><p>Destination</p></th>
+                        <th class="col s3"><p>Frequency (min)</p></th>
+                        <th class="col s3"><p>Next Train</p></th>
+                        <th class="col s3"><p>Min Away</p></th>
+                    </tr>
+                    <tr id="appendHere" class="bg-light text-dark">
+                        <td class="col s3"><p>Train Name</p></td>
+                        <td class="col s3"><p>Destination</p></td>
+                        <td class="col s3"><p>Frequency (min)</p></td>
+                        <td class="col s3"><p>Next Train</p></td>
+                        <td class="col s3"><p>Min Away</p></td>                 
+                    </tr>
+                </table>    
+            </div>
+        </div>
+        <br>
+        <div class="row card-body bg-primary">
+            <div style="width:100%">
+                <h3 class="col s12 text-center">Add Train</h3>
+                <div class="row">
+                    <form id="theForm" class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="trainName"><b>Train Name</b></label>
+                                <br>
+                                <input oninput="notEmpty();" placeholder="Train Name/ID/Number" id="trainName" type="text" class="check inPut">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="destination"><b>Destination</b></label>
+                                <br>
+                                <input oninput="notEmpty();" placeholder="Destination" id="destination" type="text" class="check inPut">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="startTime"><b>First Train Time (HH:mm - military time)</b></label>
+                                <br>
+                                <input oninput="checkTime();" placeholder="24 Hour Format" id="startTime" type="text" class="check inPut">
+                            </div>
+                            <div class="input-field col s12">
+                                <label for="trainFreq"><b>Frequency (min)e</b></label>
+                                <br>
+                                <input oninput="notEmpty();" placeholder="Frequency in Minutes" id="trainFreq" type="number" class="check inPut">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row card-body bg-primary">
+            <button id="buttonSub" class="subButton btn bg-success" type="button">Submit <i class="material-icons right">add_to_photos</i>
+            </button>
+            <button id="buttonSub" class="subButton btn bg-danger" type="button">Cancel <i class="material-icons right">close</i>
+            </button>
         </div>
     </div>
 
@@ -31,7 +98,7 @@
     
     
     
-    
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="assets/javascript/logic.js"></script>
 
 </body>
