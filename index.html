@@ -11,9 +11,8 @@
 <body>
     <div class="container">
         <div class="row card-body bg-primary">
-            <button id="addButton" class="btn btn-secondary btn-lg active col-2" type="button" name="action" href="#form">
-                Add Train<i class="material-icons right" >add_box</i>
-            </button>
+            <div class="bg-info rounded-circle col-2 p-3 text-center"> time                          
+            </div>
             <div class="col-2"></div>
             
             <h2 class="col-4 text-center">Anytime is Train Time</h2>
@@ -22,14 +21,10 @@
 
             <i class="material-icons col-2" style="font-size:60px">train</i>
         
-            <div class="row m-auto">
-                <div class="bg-success rounded-circle p-3"> time                          
-                </div>
-            </div>       
         </div>
         <br>
         <div class="row card-body bg-primary">
-            <div class="bg-danger text-white" style="width:100%">
+            <div class="bg-warning text-dark" style="width:100%">
                 <h3 class="col s12 text-center">Current Train Schedule</h3>
                 <table>
                     <tr>
@@ -88,7 +83,7 @@
         <div class="row card-body bg-primary">
             <button id="buttonSub" class="subButton btn bg-success" type="button">Submit <i class="material-icons right">add_to_photos</i>
             </button>
-            <button id="buttonSub" class="subButton btn bg-danger" type="button">Cancel <i class="material-icons right">close</i>
+            <button id="buttonCan" class="subButton btn bg-danger" type="button">Cancel <i class="material-icons right">close</i>
             </button>
         </div>
     </div>
@@ -97,7 +92,7 @@
     
     
     
-    
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="assets/javascript/logic.js"></script>
 
