@@ -76,36 +76,58 @@ if (checkName && checkDest && checkArrival) {
     return false;
 }
 };
-//#submitButton onclick
-$(document).on("click", "#buttonSub", function() {
-if(checkTime() && notEmpty()) {
-    trainName = $("#trainName").val().trim();
-    trainDest = $("#destiNation").val().trim();
-    firstTime = $("#startTime").val().trim();
-    trainFreq = $("#trainFreq").val();
 
-dataRef.ref().push({
-    trainName: trainName,
-    trainDest: trainDest,
-    firstTime: firstTime,
-    trainFreq: trainFreq
+$(document).on("click", "#buttonSub", function() {
+
+    if(checkTime() && notEmpty()) {
+        trainName = $("#trainName").val().trim();
+        trainDest = $("#destination").val().trim();
+        firstTime = $("#startTime").val().trim();
+        trainFreq = $("#trainFreq").val();
+
+        dataRef.ref().push({
+            trainName: trainName,
+            trainDest: trainDest,
+            firstTime: firstTime,
+            trainFreq: trainFreq
+        });
+    }
 });
-}
-$("#form").modal("close");
+
+$(document).on("click", "#buttonCan", function() {
+
+    $("#trainName").val("");
+    $("#destination").val("");
+    $("#startTime").val("");
+    $("#trainFreq").val("");
+
 });
+
 dataRef.ref().on("child_added", function(childSnapshot) {
     var displayName = childSnapshot.val().trainName;
     var displayDest = childSnapshot.val().trainDest;
     var firstArr = childSnapshot.val().firstTime;
     var frequent = childSnapshot.val().trainFreq;
     var convertedTime = moment(firstArr, "HH:mm").subtract(1, "years");
+    console.log(convertedTime);
     var timeDiff = moment().diff(moment(convertedTime), "minutes");
     var remTime = timeDiff % frequent;
     var timeTill = frequent - remTime;
     var nextTime = moment().add(timeTill, "minutes");
-    $("#appendHere").append("<div class='chip row center-align'><div class='new name col s3'>" + displayName + "</div><div class='new dest col s3'>" + displayDest + "</div><div class='new freq col s2'>" + frequent + "</div><div class='new next col s2'>" + moment(nextTime).format("HH:mm") + "</div><div class='new away col s2'>" + timeTill + "</div></div>");
-});      
-setInterval(function(){
+    $("#appendHere").append("<tr class='bg-light text-dark'><td class='col s3'><p>" + displayName + "</p></td><td class='col s3'><p>" + displayDest + "</p></td><td class='col s3'><p>" + frequent + "</p></td><td class='col s3'><p>" + moment(nextTime).format("HH:mm") + "</p></td><td class='col s3'><p>" + timeTill + "</p></td></tr>");
+});   
+
+$("#currentTime").html(moment().format("HH:mm A"));
+
+timeout = setInterval(function(){
 location.reload(true);
-$(".current").html(moment().format("HH:mm"));
 }, 60000);
+
+
+document.onkeyup = function (e) {
+    clearInterval(timeout);
+
+    timeout = setInterval(function(){
+        location.reload(true);
+    }, 60000);
+};

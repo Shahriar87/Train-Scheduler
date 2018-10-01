@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div class="row card-body bg-primary">
-            <div class="bg-info rounded-circle col-2 p-3 text-center"> time                          
+            <div id="currentTime" class="bg-info rounded-circle col-2 p-3 text-center">                         
             </div>
             <div class="col-2"></div>
             
@@ -26,7 +26,7 @@
         <div class="row card-body bg-primary">
             <div class="bg-warning text-dark" style="width:100%">
                 <h3 class="col s12 text-center">Current Train Schedule</h3>
-                <table>
+                <table id="appendHere">
                     <tr>
                         <th class="col s3"><p>Train Name</p></th>
                         <th class="col s3"><p>Destination</p></th>
@@ -34,13 +34,13 @@
                         <th class="col s3"><p>Next Train</p></th>
                         <th class="col s3"><p>Min Away</p></th>
                     </tr>
-                    <tr id="appendHere" class="bg-light text-dark">
+                    <!-- <tr class="bg-light text-dark">
                         <td class="col s3"><p>Train Name</p></td>
                         <td class="col s3"><p>Destination</p></td>
                         <td class="col s3"><p>Frequency (min)</p></td>
                         <td class="col s3"><p>Next Train</p></td>
                         <td class="col s3"><p>Min Away</p></td>                 
-                    </tr>
+                    </tr> -->
                 </table>    
             </div>
         </div>
@@ -93,6 +93,7 @@
     
     
     <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="assets/javascript/logic.js"></script>
 
