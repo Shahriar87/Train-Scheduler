@@ -117,7 +117,7 @@ dataRef.ref().on("child_added", function (childSnapshot) {
     $("#appendHere").append("<tr class='bg-light text-dark'><td class='col s3'><p>" + displayName + "</p></td><td class='col s3'><p>" + displayDest + "</p></td><td class='col s3'><p>" + frequent + "</p></td><td class='col s3'><p>" + moment(nextTime).format("HH:mm") + "</p></td><td class='col s3'><p>" + timeTill + "</p></td></tr>");
 });
 
-$("#currentTime").html(moment().format("HH:mm A"));
+$("#currentTime").html(moment().format("HH:mm"));
 
 timeout = setInterval(function () {
     location.reload(true);
