@@ -13,7 +13,7 @@ $(".content").hide();
 
 // Authentication Initialization
 var provider = new firebase.auth.GoogleAuthProvider();
-// provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 provider.addScope('profile');
 provider.addScope('email');
 
