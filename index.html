@@ -1,40 +1,60 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Train Scheduler</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
 </head>
+
 <body>
     <div class="container">
         <div class="row card-body bg-primary">
-            <div id="currentTime" class="bg-info rounded-circle col-2 p-3 text-center">                         
+            <div id="currentTime" class="bg-info rounded-circle col-2 p-3 text-center">
             </div>
             <div class="col-2"></div>
-            
+
             <h2 class="col-4 text-center">Anytime is Train Time</h2>
-            
+
             <div class="col-2"></div>
 
             <i class="material-icons col-2" style="font-size:60px">train</i>
-        
+
+            <div class="row mx-auto mt-4">
+                <button class="text-center btn btn-lg signIn">Sign In With Google To Enter</button>
+            </div>
         </div>
         <br>
-        <div class="row card-body bg-primary">
+        <div class="row card-body bg-primary content">
             <div class="bg-warning text-dark" style="width:100%">
                 <h3 class="col s12 text-center">Current Train Schedule</h3>
                 <table id="appendHere">
                     <tr>
-                        <th class="col s2"><p>Train Name</p></th>
-                        <th class="col s2"><p>Destination</p></th>
-                        <th class="col s2"><p>Frequency (min)</p></th>
-                        <th class="col s2"><p>Next Train</p></th>
-                        <th class="col s2"><p>Min Away</p></th>
-                        <th class="col s1"><p>Delete</p></th>
-                        <th class="col s1"><p>Edit</p></th>
+                        <th class="col s2">
+                            <p>Train Name</p>
+                        </th>
+                        <th class="col s2">
+                            <p>Destination</p>
+                        </th>
+                        <th class="col s2">
+                            <p>Frequency (min)</p>
+                        </th>
+                        <th class="col s2">
+                            <p>Next Train</p>
+                        </th>
+                        <th class="col s2">
+                            <p>Min Away</p>
+                        </th>
+                        <th class="col s1">
+                            <p>Delete</p>
+                        </th>
+                        <th class="col s1">
+                            <p>Edit</p>
+                        </th>
                     </tr>
                     <!-- <tr class="bg-light text-dark">
                         <td class="col s3"><p>Train Name</p></td>
@@ -43,11 +63,11 @@
                         <td class="col s3"><p>Next Train</p></td>
                         <td class="col s3"><p>Min Away</p></td>                 
                     </tr> -->
-                </table>    
+                </table>
             </div>
         </div>
         <br>
-        <div class="row card-body bg-primary">
+        <div class="row card-body bg-primary content">
             <div style="width:100%">
                 <h3 class="col s12 text-center">Add Train</h3>
                 <div class="row">
@@ -56,33 +76,37 @@
                             <div class="input-field col s12">
                                 <label for="trainName"><b>Train Name</b></label>
                                 <br>
-                                <input oninput="notEmpty();" placeholder="Train Name/ID/Number" id="trainName" type="text" class="check inPut">
+                                <input oninput="notEmpty();" placeholder="Train Name/ID/Number" id="trainName" type="text"
+                                    class="check inPut">
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="destination"><b>Destination</b></label>
                                 <br>
-                                <input oninput="notEmpty();" placeholder="Destination" id="destination" type="text" class="check inPut">
+                                <input oninput="notEmpty();" placeholder="Destination" id="destination" type="text"
+                                    class="check inPut">
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="startTime"><b>First Train Time (HH:mm - military time)</b></label>
                                 <br>
-                                <input oninput="checkTime();" placeholder="24 Hour Format" id="startTime" type="text" class="check inPut">
+                                <input oninput="checkTime();" placeholder="24 Hour Format" id="startTime" type="text"
+                                    class="check inPut">
                             </div>
                             <div class="input-field col s12">
                                 <label for="trainFreq"><b>Frequency (min)</b></label>
                                 <br>
-                                <input oninput="notEmpty();" placeholder="Frequency in Minutes" id="trainFreq" type="number" class="check inPut">
+                                <input oninput="notEmpty();" placeholder="Frequency in Minutes" id="trainFreq" type="number"
+                                    class="check inPut">
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="row card-body bg-primary">
+        <div class="row card-body bg-primary content">
             <button id="buttonSub" class="subButton btn bg-success" type="button">Submit <i class="material-icons right">add_to_photos</i>
             </button>
             <button id="buttonCan" class="subButton btn bg-danger" type="button">Cancel <i class="material-icons right">close</i>
@@ -91,13 +115,15 @@
     </div>
 
 
-    
-    
-    
+
+
+
     <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
     <script src="assets/javascript/logic.js"></script>
 
 </body>
+
 </html>
