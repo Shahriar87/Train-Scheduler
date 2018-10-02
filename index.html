@@ -28,11 +28,13 @@
                 <h3 class="col s12 text-center">Current Train Schedule</h3>
                 <table id="appendHere">
                     <tr>
-                        <th class="col s3"><p>Train Name</p></th>
-                        <th class="col s3"><p>Destination</p></th>
-                        <th class="col s3"><p>Frequency (min)</p></th>
-                        <th class="col s3"><p>Next Train</p></th>
-                        <th class="col s3"><p>Min Away</p></th>
+                        <th class="col s2"><p>Train Name</p></th>
+                        <th class="col s2"><p>Destination</p></th>
+                        <th class="col s2"><p>Frequency (min)</p></th>
+                        <th class="col s2"><p>Next Train</p></th>
+                        <th class="col s2"><p>Min Away</p></th>
+                        <th class="col s1"><p>Delete</p></th>
+                        <th class="col s1"><p>Edit</p></th>
                     </tr>
                     <!-- <tr class="bg-light text-dark">
                         <td class="col s3"><p>Train Name</p></td>
@@ -71,7 +73,7 @@
                                 <input oninput="checkTime();" placeholder="24 Hour Format" id="startTime" type="text" class="check inPut">
                             </div>
                             <div class="input-field col s12">
-                                <label for="trainFreq"><b>Frequency (min)e</b></label>
+                                <label for="trainFreq"><b>Frequency (min)</b></label>
                                 <br>
                                 <input oninput="notEmpty();" placeholder="Frequency in Minutes" id="trainFreq" type="number" class="check inPut">
                             </div>

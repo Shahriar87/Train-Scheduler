@@ -1,5 +1,5 @@
 input{
-    width: 100%
+    width: 100%;
 }
 
 h2 {
@@ -10,4 +10,10 @@ h6 {
     text-decoration: underline;
 }
 
+tr {
+    border-bottom: 2px solid grey;
+}
 
+td:hover {
+    background-color: bisque;
+}
