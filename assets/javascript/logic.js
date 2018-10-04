@@ -22,6 +22,7 @@ setInterval(function () {
     // location.reload(true);
 }, 1000);
 
+//Google Sign in
 $(document).on("click", "#signIn", function () {
     firebase.auth().signInWithPopup(provider).then(function (result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -39,6 +40,7 @@ $(document).on("click", "#signIn", function () {
     });
 });
 
+//Google Sign out
 $(document).on("click", "#signOut", function () {
     firebase.auth().signOut().then(function () {
         $('.content').hide();
@@ -48,9 +50,77 @@ $(document).on("click", "#signOut", function () {
     $("#signOut").removeAttr("id")
         .attr("id", "signIn")
         .html("Sign In With Google");
-        location.reload(true);
+    location.reload(true);
 });
 
+
+// Time input format check
+function checkTime() {
+    var isValid = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test($("#startTime").val());
+    if (isValid) {
+        $("#startTime").addClass("bg-success")
+        setTimeout(function () {
+            $("#startTime").removeClass("bg-success")
+        }, 2000);
+    } else {
+        $("#startTime").addClass("bg-danger");
+        setTimeout(function () {
+            $("#startTime").removeClass("bg-danger")
+        }, 750);
+    }
+    return isValid;
+};
+
+// Checking input values to be not empty
+function notEmpty() {
+    var checkName;
+    var checkDest;
+    var checkArrival;
+    if ($("#trainName").val() != "") {
+        $("#trainName").addClass("bg-success")
+        setTimeout(function () {
+            $("#trainName").removeClass("bg-success")
+        }, 2000);
+        checkName = true;
+    } else {
+        $("#trainName").addClass("bg-danger");
+        setTimeout(function () {
+            $("#trainName").removeClass("bg-danger")
+        }, 750);
+        checkName = false;
+    }
+    if ($("#destination").val() != "") {
+        $("#destination").addClass("bg-success")
+        setTimeout(function () {
+            $("#destination").removeClass("bg-success")
+        }, 2000);
+        checkDest = true;
+    } else {
+        $("#destination").addClass("bg-danger");
+        setTimeout(function () {
+            $("#destination").removeClass("bg-danger")
+        }, 750);
+        checkDest = false;
+    }
+    if ($("#trainFreq").val() != "") {
+        $("#trainFreq").addClass("bg-success")
+        setTimeout(function () {
+            $("#trainFreq").removeClass("bg-success")
+        }, 2000);
+        checkArrival = true;
+    } else {
+        $("#trainFreq").addClass("bg-danger");
+        setTimeout(function () {
+            $("#trainFreq").removeClass("bg-danger")
+        }, 750);
+        checkArrival = false;
+    }
+    if (checkName && checkDest && checkArrival) {
+        return true;
+    } else {
+        return false;
+    }
+};
 
 function loggedIn() {
 
@@ -65,73 +135,6 @@ function loggedIn() {
     // Debugging double appending for sign out and sign in
     $(".tr").empty();
 
-    // Time input format check
-    function checkTime() {
-        var isValid = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test($("#startTime").val());
-        if (isValid) {
-            $("#startTime").addClass("bg-success")
-            setTimeout(function () {
-                $("#startTime").removeClass("bg-success")
-            }, 2000);
-        } else {
-            $("#startTime").addClass("bg-danger");
-            setTimeout(function () {
-                $("#startTime").removeClass("bg-danger")
-            }, 750);
-        }
-        return isValid;
-    };
-
-    // Checking input values to be not empty
-    function notEmpty() {
-        var checkName;
-        var checkDest;
-        var checkArrival;
-        if ($("#trainName").val() != "") {
-            $("#trainName").addClass("bg-success")
-            setTimeout(function () {
-                $("#trainName").removeClass("bg-success")
-            }, 2000);
-            checkName = true;
-        } else {
-            $("#trainName").addClass("bg-danger");
-            setTimeout(function () {
-                $("#trainName").removeClass("bg-danger")
-            }, 750);
-            checkName = false;
-        }
-        if ($("#destination").val() != "") {
-            $("#destination").addClass("bg-success")
-            setTimeout(function () {
-                $("#destination").removeClass("bg-success")
-            }, 2000);
-            checkDest = true;
-        } else {
-            $("#destination").addClass("bg-danger");
-            setTimeout(function () {
-                $("#destination").removeClass("bg-danger")
-            }, 750);
-            checkDest = false;
-        }
-        if ($("#trainFreq").val() != "") {
-            $("#trainFreq").addClass("bg-success")
-            setTimeout(function () {
-                $("#trainFreq").removeClass("bg-success")
-            }, 2000);
-            checkArrival = true;
-        } else {
-            $("#trainFreq").addClass("bg-danger");
-            setTimeout(function () {
-                $("#trainFreq").removeClass("bg-danger")
-            }, 750);
-            checkArrival = false;
-        }
-        if (checkName && checkDest && checkArrival) {
-            return true;
-        } else {
-            return false;
-        }
-    };
 
     // Submitting Data to Firebase
 
