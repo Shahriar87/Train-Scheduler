@@ -133,11 +133,10 @@ function loggedIn() {
     var currentTime = moment();
 
     // Debugging double appending for sign out and sign in
-    $(".tr").empty();
+    $(".tr").remove();
 
 
     // Submitting Data to Firebase
-
     $(document).on("click", "#buttonSub", function () {
 
         if (checkTime() && notEmpty()) {
@@ -178,7 +177,6 @@ function loggedIn() {
     });
 
     // Appending Newly Entered Train information in the Display
-
     dataRef.ref().on("child_added", function (childSnapshot) {
         var displayName = childSnapshot.val().trainName;
         var displayDest = childSnapshot.val().trainDest;
@@ -199,8 +197,30 @@ function loggedIn() {
             + trainId + "><i class='material-icons' style='font-size:30px; color: blue'>edit</i></button></td></tr>");
     });
 
-    // Appending updated Train information in the Display
+    // Update Train Schedule every minutes instead of page reloading, which used to log the user out on every page refresh
+    setInterval(function () {
+        $(".tr").remove();
 
+        dataRef.ref().on("child_added", function (childSnapshot) {
+            var displayName = childSnapshot.val().trainName;
+            var displayDest = childSnapshot.val().trainDest;
+            var firstArr = childSnapshot.val().firstTime;
+            var frequent = childSnapshot.val().trainFreq;
+            var convertedTime = moment(firstArr, "HH:mm").subtract(1, "years");
+            var trainId = childSnapshot.key;
+            var timeDiff = moment().diff(moment(convertedTime), "minutes");
+            var remTime = timeDiff % frequent;
+            var timeTill = frequent - remTime;
+            var nextTime = moment().add(timeTill, "minutes");
+            $("#appendHere").append("<tr id='" + trainId + "' class='bg-light text-dark tr'><td class='col s2'><p>" + displayName + "</p></td><td class='col s2'><p>"
+                + displayDest + "</p></td><td class='col s2'><p>" + frequent + "</p></td><td class='col s2'><p>" + moment(nextTime).format("HH:mm")
+                + "</p></td><td class='col s2'><p>" + timeTill + "</p></td><td class='col s1'><button class='delete btn' data-train=" + trainId
+                + "><i class='material-icons' style='font-size:30px; color: red'>delete_forever</i></button></td><td class='col s1'><button class='edit btn' data-train="
+                + trainId + "><i class='material-icons' style='font-size:30px; color: blue'>edit</i></button></td></tr>");
+        });
+    }, 60000);
+
+    // Update updated Train information in the Display
     dataRef.ref().on('child_changed', function (childSnapshot) {
         var displayName = childSnapshot.val().trainName;
         var displayDest = childSnapshot.val().trainDest;
@@ -247,31 +267,6 @@ function loggedIn() {
         $("#currentTime").html("<h4>" + moment().format("HH:mm:ss") + "<h4>");
         // location.reload(true);
     }, 1000);
-
-
-    // Update Train Schedule every minutes instead of page reloading, which used to log the user out on every page refresh
-
-    setInterval(function () {
-        $(".tr").empty();
-
-        dataRef.ref().on("child_added", function (childSnapshot) {
-            var displayName = childSnapshot.val().trainName;
-            var displayDest = childSnapshot.val().trainDest;
-            var firstArr = childSnapshot.val().firstTime;
-            var frequent = childSnapshot.val().trainFreq;
-            var convertedTime = moment(firstArr, "HH:mm").subtract(1, "years");
-            var trainId = childSnapshot.key;
-            var timeDiff = moment().diff(moment(convertedTime), "minutes");
-            var remTime = timeDiff % frequent;
-            var timeTill = frequent - remTime;
-            var nextTime = moment().add(timeTill, "minutes");
-            $("#appendHere").append("<tr id='" + trainId + "' class='bg-light text-dark tr'><td class='col s2'><p>" + displayName + "</p></td><td class='col s2'><p>"
-                + displayDest + "</p></td><td class='col s2'><p>" + frequent + "</p></td><td class='col s2'><p>" + moment(nextTime).format("HH:mm")
-                + "</p></td><td class='col s2'><p>" + timeTill + "</p></td><td class='col s1'><button class='delete btn' data-train=" + trainId
-                + "><i class='material-icons' style='font-size:30px; color: red'>delete_forever</i></button></td><td class='col s1'><button class='edit btn' data-train="
-                + trainId + "><i class='material-icons' style='font-size:30px; color: blue'>edit</i></button></td></tr>");
-        });
-    }, 60000);
 
 };
 
