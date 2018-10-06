@@ -17,3 +17,9 @@ tr {
 td:hover {
     background-color: bisque;
 }
+
+ body {
+    background-image: url(https://i.pinimg.com/originals/72/d0/d5/72d0d5822f69ff4747ddaffe687b1eb1.jpg);
+    background-position: stretch;
+    background-size: cover;  
+ }
